@@ -1,6 +1,6 @@
 # Extensión para navegador web
 **RELOJ DIGITAL LINEAL**
-Esta extensión para el navegador web es una adaptación a una resolucion de 300x150px de un reloj digital circular.
+Esta extensión para el navegador web es una adaptación a una resolución de 300x150px de un reloj digital circular.
 
 ## Descripción del proyecto
 Un reloj que mediante una **representación abstracta y visual** pretende mostrar **el paso del tiempo** de una forma diferente.
@@ -29,7 +29,7 @@ digitalLinealWatch/
 ## Instalación
 1. Descarga o clona este repositorio.
 2. Abre Firefox y escribe **about:debugging#/runtime/this-firefox** en la barra de búsqueda.
-3. Pulsa **Cargar complemento temporal...** y **selecciona** cualquier archivo**, por ejemplo popup.html.
+3. Pulsa **Cargar complemento temporal...** y **selecciona cualquier archivo**, por ejemplo popup.html.
 4. Haz clic en el icono de Reloj en la barra de herramientas.
 
 ## Tecnologías utilizadas
