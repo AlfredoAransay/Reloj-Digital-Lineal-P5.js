@@ -42,15 +42,16 @@ async function setup() {
 
     let formatoGuardado = getItem('formato');
     if (formatoGuardado !== null) {
-        esOscuro = formatoGuardado;
+        formato24h = formatoGuardado;
     }
     
-    aplicarTemaDOM();
+    aplicarTemaDOM(); // Inyectar el tema en el HTML
 
     // Configurar eventos de los botones del DOM
     btnTema = document.getElementById('tema-toggle');
     btnFormato = document.getElementById('formato-toggle');
 
+    // Captura del evento del botón del tema
     if (btnTema) {
         btnTema.addEventListener('click', () => {
             esOscuro = !esOscuro;
@@ -59,6 +60,7 @@ async function setup() {
         });
     }
 
+    // Captura del evento del botón del formato horario
     if (btnFormato) {
         btnFormato.addEventListener('click', () => {
             formato24h = !formato24h; // Alternar entre 12h y 24h
@@ -71,6 +73,7 @@ async function setup() {
     actualizarBotonFormato();
 }
 
+// Función encargada de inyectar los cambios en el HTML y CSS
 function aplicarTemaDOM() {
     let body = document.body;
     if (esOscuro) {
@@ -96,6 +99,7 @@ function aplicarTemaDOM() {
     }
 }
 
+// Función encargada de actualizar el formato horario
 function actualizarBotonFormato() {
     if (btnFormato) {
         // Si estamos en 24h, el botón ofrece pasar a 12h. Si estamos en 12h, ofrece pasar a 24h.
@@ -118,8 +122,7 @@ function draw() {
     d = day();
     mo = month();
     y = year();
-    // Determinar AM o PM
-    let ampm = h >= 12 ? "PM" : "AM";
+    let ampm = h >= 12 ? "PM" : "AM"; // Determinar si es AM o PM
     
     dibujarRelojDigital(ampm, h, m, s, d, mo, y);
     dibujarSegundos(radioSegundos, s);
@@ -148,7 +151,7 @@ function dibujarRelojDigital(ampm, h, m, s, d, mo, y) {
     } else {
         fill(negro75); // Color azul cian 75%
         textSize(11);
-        formato24h ? text(`${ampm}`, 46, 20) : text("24H", 56, 20); // Mostrar si es AM o PM
+        formato24h ? text(`${ampm}`, 56, 20) : text("24H", 56, 20); // Mostrar si es AM o PM
         fill(cian);
         textSize(16);
         textStyle(BOLD);
@@ -182,11 +185,18 @@ function dibujarSegundos(radioSegundos, s) {
 function dibujarHoras(h) {
     noFill();
     strokeWeight(4);
-    stroke(naranjaClaro40); // Calor naranja claro
+    stroke(naranjaClaro40); // Calor naranja claro al 40%
     line(20, 125, 280, 125);
     strokeWeight(6);
     stroke(naranjaClaro); // Calor naranja claro
-    for (let i = 0; i < h; i++) {
+    // Si estamos en 24h, el ciclo completo es de 24 horas; si estamos en 12h, es de 12 horas.
+    let lineaAnchoHoras = 280;
+    let lineaParaHoras = formato24h ? ((h % 12) * 3600) + (m * 60) + s : (h * 3600) + (m * 60) + s;
+    let maxSegundos = formato24h ? (12 * 3600) : (24 * 3600);
+    let anchoProgreso = map(lineaParaHoras, 0, maxSegundos, 0, lineaAnchoHoras);
+    line(20, 125, anchoProgreso, 125);
+
+    /* for (let i = 0; i < h; i++) {
         line(20, 125, 20 + i*4.45, 125);
-    }
+    } */
 }
