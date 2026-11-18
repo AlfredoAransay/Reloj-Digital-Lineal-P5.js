@@ -9,23 +9,6 @@ Un reloj digital lineal que mediante una extensión web tiene como objetivo **mo
 Dos botones que otorgan de cierta funcionalidad al reloj:
 1.	**Botón de 24 y 12 horas**. Mediante la pulsación de este botón se puede intercambiar el **formato de hora**, a **24H** o a 12 horas con **AM y PM**.
 2.	**Botón selector de tema**. A través de su pulsación intercambiamos entre un tema oscuro "**DARK**" y otro claro "**LIGHT**".
-## Estructura jerárquica del código
-### Árbol de documentos
-```
-digitalLinealWatch/
-├── imgs/
-│   ├── icon16.png
-│   ├── icon32.png
-│   ├── icon48.png
-│   └── icon128.png
-├── LICENSE
-├── manifest.json
-├── p5.js
-├── popup.html
-├── sketch.js
-├── style.css
-└── README.md
-```
 
 ## Almacenamiento persistente y recuperación de estado
 Las **funciones storeItem()** y **getItem()** son utilizadas por la biblioteca p5.js para **guardar y recuperar datos en el almacenamiento local del navegador** (localStorage). Permiten que una aplicación o proyecto recuerde información incluso después de recargar la página o cerrar el navegador.
